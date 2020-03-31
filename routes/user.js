@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id/cart', /*authMiddleware.allowAccess,*/ (req, res) => {
+router.get('/:id/cart', authMiddleware.allowAccess, (req, res) => {
   if (!isNaN(req.params.id)) {
     Cart_Item.getByUser(req.params.id).then(cart_items => {
       res.json(cart_items);
@@ -46,7 +46,7 @@ function validItem(item) {
 }
 
 //add item to cart no duplicates
-router.post('/:id/cart', /*authMiddleware.allowAccess,*/ (req, res, next) => {
+router.post('/:id/cart', authMiddleware.allowAccess, (req, res, next) => {
   let isUnique = true;
   const item = {
     product_id: req.body.product_id,
@@ -78,7 +78,7 @@ router.post('/:id/cart', /*authMiddleware.allowAccess,*/ (req, res, next) => {
 });
 
 //update quantity of item might not use this why would you order more than one of the same text book?
-router.put('/:id/cart/:item_id', /*authMiddleware.allowAccess,*/ (req, res, next) => {
+router.put('/:id/cart/:item_id', authMiddleware.allowAccess, (req, res, next) => {
   const item = {
     product_id: req.params.item_id,
     quantity: req.body.quantity,
@@ -104,7 +104,7 @@ router.put('/:id/cart/:item_id', /*authMiddleware.allowAccess,*/ (req, res, next
 });
 
 //delete items
-router.delete('/:id/cart/:item_id', /*authMiddleware.allowAccess,*/ (req, res, next) => {
+router.delete('/:id/cart/:item_id', authMiddleware.allowAccess, (req, res, next) => {
   Cart_Item
     .getbyIdandProduct(req.params.id, req.params.item_id)
     .then(cart_item => {

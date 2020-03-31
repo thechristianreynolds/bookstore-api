@@ -57,11 +57,13 @@ router.post('/signup', (req, res, next) => {
           });
         } else {
           // email in use
+          res.status(409);
           next(new Error('Email in use'));
         }
       });
   } else {
     // send an error
+    res.status(422);
     next(new Error('Invalid user'));
   }
 });
@@ -94,14 +96,17 @@ router.post('/login', (req, res, next) => {
                 message: 'Logged in! 🔓'
               })
             } else {
+              res.status(401);
               next(new Error('Invalid login'));
             }
           });
         } else {
+          res.status(401);
           next(new Error('Invalid login'));
         }
       });
   } else {
+    res.status(401);
     next(new Error('Invalid login'));
   }
 });

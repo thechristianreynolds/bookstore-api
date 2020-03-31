@@ -26,14 +26,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: 'http://localhost:8080',
+  origin: 'http://localhost:3001',
   credentials: true
 }));
 
 app.use('/auth', auth);
 app.use('/', index);
-//app.use('/user', authMiddleware.ensureLoggedIn, user);
-app.use('/user', user);
+app.use('/user', authMiddleware.ensureLoggedIn, user);
+// app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  res.status(err.status || res.statusCode || 500);
+  res.status(err.status || res.statusCode == 200 ? 500 : res.statusCode);
   res.json({
     message: err.message,
     error: req.app.get('env') === 'development' ? err : {}
