@@ -4,6 +4,8 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.text('product_id').notNullable();
     table.decimal('quantity').notNullable();
+    table.text('title').notNullable();
+    table.text('image_url').notNullable();
     table.integer('user_id').references('user.id').unsigned().onDelete('cascade');
   });
 };

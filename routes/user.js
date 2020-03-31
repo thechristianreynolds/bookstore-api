@@ -40,9 +40,13 @@ router.get('/:id/cart', authMiddleware.allowAccess, (req, res) => {
 function validItem(item) {
   const validProductId = typeof item.product_id == 'string' &&
     item.product_id.trim() != '';
+  const validImg = typeof item.image_url == 'string' &&
+    item.image_url.trim() != '';
+  const validTitle = typeof item.title == 'string' &&
+  item.title.trim() != '';
   const validQuanitity = !isNaN(item.quantity);
   const validUserId = !isNaN(item.user_id);
-  return validProductId && validQuanitity && validUserId;
+  return validProductId && validImg &&validQuanitity && validUserId;
 }
 
 //add item to cart no duplicates
@@ -50,8 +54,10 @@ router.post('/:id/cart', authMiddleware.allowAccess, (req, res, next) => {
   let isUnique = true;
   const item = {
     product_id: req.body.product_id,
+    image_url: req.body.image_url,
+    title: req.body.title,
     quantity: req.body.quantity,
-    user_id: parseInt(req.params.id),
+    user_id: req.params.id,
   };
   if (validItem(item)) {
     Cart_Item
