@@ -59,7 +59,7 @@ router.get('/search/book/:id', function (req, res, next) {
           resError(res, 404, "Book Not Available");
         });
     }).catch(error => {
-      resError(res, 404, "No search results");
+      resError(res, 404, "Book Not Available");
     });
 });
 
