@@ -19,5 +19,8 @@ module.exports = {
   },
   delete: function(id) {
     return knex('cart_item').where('id', id).del();
+  },
+  deleteCart: function(id) {
+    return knex('cart_item').where('user_id', id).del();
   }
 }

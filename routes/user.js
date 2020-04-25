@@ -129,6 +129,14 @@ router.delete('/:id/cart/:item_id', authMiddleware.allowAccess, (req, res, next)
     });
 });
 
+router.delete('/:id/cart', authMiddleware.allowAccess, (req, res, next) => {
+  Cart_Item
+    .deleteCart(req.params.id)
+    .then(result => {
+      res.json(result);
+    })
+});
+
 function resError(res, statusCode, message) {
   res.status(statusCode);
   res.json({
