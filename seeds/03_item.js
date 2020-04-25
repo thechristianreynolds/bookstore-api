@@ -41,7 +41,7 @@ exports.seed = (knex, Promise) => {
           price: "48.00",
           title: "College Algebra",
           edition: "1",
-          author: "Jay P. Abramson, Valeree Falduto, Rachael Gross, David Lippman, Rick Norwood, Melonie Rasmussen, Nicholas Belloit, Jean-Marie Magnier, Harold Whipple, Christina Fernandez",
+          author: "Jay P. Abramson, Valeree Falduto, Rachael Gross",
           publisher: "OpenStax",
           category: "Math",
           image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQAgg6xgh7J4pUNs0vbvxuNvDdgKMzKV-hhQYfNsM5mEZOxqPZrNn6X4n6F-b0egv0EuGfowwhl&usqp=CAc",
